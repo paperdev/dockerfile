@@ -40,18 +40,11 @@ ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-w
 
 # could use ADD but this one does not check Last-Modified header neither does it allow to control checksum 
 # see https://github.com/docker/docker/issues/8331
-# RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war \
-#   && echo "${JENKINS_SHA}  /usr/share/jenkins/jenkins.war" | sha256sum -c -
-
 RUN curl -fsSL ${JENKINS_URL} -o ${JENKINS_DOWNLOAD_DIR}/jenkins.war \
   && echo "${JENKINS_SHA}  ${JENKINS_DOWNLOAD_DIR}/jenkins.war" | sha256sum -c -
 
-# ENV JENKINS_UC https://updates.jenkins.io
-# ENV JENKINS_UC_EXPERIMENTAL=https://updates.jenkins.io/experimental
-
 EXPOSE ${http_port}
 EXPOSE ${agent_port}
-
 
 USER ${user}
 COPY jenkins.sh /usr/local/bin/jenkins.sh
