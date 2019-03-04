@@ -13,4 +13,5 @@ run jenkins with docker
 run mysql with docker
 1. $cd mysql
 2. $docker build -t centos_mysql . (DOT NOT FORGET DOT)
-3. $docker run -itd -p 3306:3306 --name mysql centos_mysql
+3. $docker run -itd -p 3306:3306 --name mysql centos_mysql \
+A random password can be found in docker log.
